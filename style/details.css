@@ -1,0 +1,41 @@
+/* Custom details/summary icon */
+details.custom summary {
+    list-style: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Hide default marker in WebKit-based browsers */
+details.custom summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Add custom triangle icon from project root */
+details.custom summary::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    background-image: url("../ic.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    transition: transform 0.18s ease;
+    vertical-align: middle;
+    color: inherit;
+}
+
+/* Rotate when open */
+details.custom[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* Fallback: if user prefers reduced motion, remove rotation */
+@media (prefers-reduced-motion: reduce) {
+    details.custom summary::before,
+    details.custom[open] summary::before {
+        transition: none;
+        transform: none;
+    }
+}
